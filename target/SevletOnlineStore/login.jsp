@@ -12,20 +12,16 @@
     if (auth != null) {
         response.sendRedirect("index.jsp");
     }
-
     ArrayList<Cart> cart_list = (ArrayList<Cart>) session.getAttribute("cart-list");
     if (cart_list != null){
         request.setAttribute("cart_list", cart_list);
     }
 %>
 
-
 <html>
 <head>
-
     <title> Shoping cart login </title>
     <%@include file="includes/head.jsp" %>
-
 </head>
 <body>
 <%@include file="includes/navbar.jsp" %>
