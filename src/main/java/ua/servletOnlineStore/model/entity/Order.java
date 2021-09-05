@@ -1,6 +1,6 @@
 package ua.servletOnlineStore.model.entity;
 
-public class Order extends Product {
+public class Order {
 
     private int orderId;
     private int pId;

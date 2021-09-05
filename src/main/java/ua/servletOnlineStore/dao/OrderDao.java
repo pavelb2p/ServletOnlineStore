@@ -7,15 +7,19 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 
 public class OrderDao {
+
     private Connection connection;
-
     private String query;
-
     private PreparedStatement preparedStatement;
 
     public OrderDao(Connection connection) {
         this.connection = connection;
     }
+    /**
+     * The method saves the order to the database
+     * @param order
+     * @return
+     */
 
     public boolean saveOrder(Order order) {
 

@@ -8,18 +8,21 @@ import java.sql.ResultSet;
 
 public class UserDao {
 
-    private Connection connection;
-
+    private final Connection connection;
     private String query;
-
     private PreparedStatement preparedStatement;
-
     private ResultSet resultSet;
 
     public UserDao(Connection connection) {
         this.connection = connection;
     }
 
+    /**
+     * The method checks if the User is present in the database (registered)
+     * @param email
+     * @param password
+     * @return
+     */
     public User userLogin(String email, String password) {
         User user = null;
 

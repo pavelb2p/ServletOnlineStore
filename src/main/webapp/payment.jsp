@@ -16,5 +16,7 @@
 <body>
 <p>Total amount of your order</p><p><%=request.getAttribute("orderSum")%></p>
 <label>Enter cart number</label><input type="text">
+
+<a class="btn btn-primary" href="#">Thanks !</a>
 </body>
 </html>

@@ -13,11 +13,8 @@ import java.util.List;
 public class ProductDao {
 
     private Connection connection;
-
     private String query;
-
     private PreparedStatement preparedStatement;
-
     private ResultSet resultSet;
 
     public ProductDao() {
@@ -26,7 +23,10 @@ public class ProductDao {
     public ProductDao(Connection connection) {
         this.connection = connection;
     }
-
+    /**
+     * This method gets all products from the database
+     * @return
+     */
     public List<Product> getAllProduct() {
         List<Product> products = new ArrayList<>();
 
@@ -44,9 +44,7 @@ public class ProductDao {
                 row.setImage(resultSet.getString("image"));
 
                 products.add(row);
-
             }
-
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
@@ -54,8 +52,13 @@ public class ProductDao {
         return products;
     }
 
+    /**
+     * The method gets the products that have been added to the cart
+     * @param cartList
+     * @return
+     */
     public List<Cart> getCartProducts(ArrayList<Cart> cartList) {
-        List<Cart> products = new ArrayList<Cart>();
+        List<Cart> products = new ArrayList<>();
         try {
             if (cartList.size() > 0) {
                 for (Cart item : cartList) {
@@ -81,6 +84,11 @@ public class ProductDao {
         return products;
     }
 
+    /**
+     * The method calculates the total cost of products in the cart
+     * @param cartList
+     * @return
+     */
     public double getTotalCartPrice(ArrayList<Cart> cartList) {
         double sum = 0;
 

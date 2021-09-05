@@ -16,6 +16,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
+/**
+ * Change Locale Servlet
+ */
 @WebServlet("/changeLocale")
 public class ChangeLocaleServlet extends HttpServlet {
     private static final long serialVersionUID = 1L;

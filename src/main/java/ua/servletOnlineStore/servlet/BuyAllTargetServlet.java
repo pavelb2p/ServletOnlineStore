@@ -22,26 +22,25 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.Objects;
 
+/**
+ * Buying all items in the cart Servlet
+ */
 @WebServlet("/buyAllTargetServlet")
 public class BuyAllTargetServlet extends HttpServlet {
     private static final long serialVersionUID = 1L;
 
-
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
         try {
-
             SimpleDateFormat formatDate = new SimpleDateFormat("yyyy-MM-dd");
-
             Date date = new Date();
-
             User auth = (User) request.getSession().getAttribute("auth");
             if (Objects.nonNull(auth)) {
-
                 ArrayList<Cart> cart_list = (ArrayList<Cart>) request.getSession().getAttribute("cart-list");
                 ArrayList<Cart> productsInTarget = (ArrayList<Cart>) new ProductDao(DBConnection.getConnection()).getCartProducts(cart_list);
                 double orderSum = 0;
                 for (Cart p : productsInTarget) {
-                    orderSum += p.getPrice() * p.getQuantity();
+                    orderSum += p.getPrice();
+
                     Order orderModel = new Order();
                     orderModel.setpId(p.getId());
                     orderModel.setUId(auth.getId());
@@ -55,12 +54,8 @@ public class BuyAllTargetServlet extends HttpServlet {
             } else {
                 response.sendRedirect("login.jsp");
             }
-        } catch (SQLException throwables) {
+        } catch (SQLException | ClassNotFoundException | ServletException throwables) {
             throwables.printStackTrace();
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
-        } catch (ServletException e) {
-            e.printStackTrace();
         }
     }
 

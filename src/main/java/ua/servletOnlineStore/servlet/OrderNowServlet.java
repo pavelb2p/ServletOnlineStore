@@ -24,6 +24,9 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.Objects;
 
+/**
+ * Buying the selected item in the cart Servlet
+ */
 @WebServlet("/order-now")
 public class OrderNowServlet extends HttpServlet {
     private static final long serialVersionUID = 1L;
@@ -56,19 +59,16 @@ public class OrderNowServlet extends HttpServlet {
                             break;
                         }
                     }
-                    request.setAttribute("orderSum", orderModel.getQuantity() * productPrice);
+                    request.setAttribute("orderSum", productPrice);
+
                     RequestDispatcher dis = request.getRequestDispatcher("payment.jsp");
                     dis.forward(request, response);
                 }
             } else {
                 response.sendRedirect("login.jsp");
             }
-        } catch (SQLException throwables) {
+        } catch (SQLException | ClassNotFoundException | ServletException throwables) {
             throwables.printStackTrace();
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
-        } catch (ServletException b) {
-            b.printStackTrace();
         }
     }
 

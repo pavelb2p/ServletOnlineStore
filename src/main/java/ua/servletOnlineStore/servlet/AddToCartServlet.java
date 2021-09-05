@@ -15,6 +15,9 @@ import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 
+/**
+ * Add item to cart servlet
+ */
 @WebServlet("/add-to-cart")
 public class AddToCartServlet extends HttpServlet {
     private static final long serialVersionUID = 1L;

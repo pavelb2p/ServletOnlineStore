@@ -12,6 +12,9 @@ import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.Objects;
 
+/**
+ * Remove from Cart Servlet
+ */
 @WebServlet("/remove-from-cart")
 public class RemoveFromCartServlet extends HttpServlet {
     private static final long serialVersionUID = 1L;
@@ -21,7 +24,9 @@ public class RemoveFromCartServlet extends HttpServlet {
         response.setContentType("text/html; charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
             String id = request.getParameter("id");
-            if (Objects.nonNull(id)) {
+            if (!Objects.nonNull(id)) {
+                response.sendRedirect("cart.jsp");
+            } else {
                 ArrayList<Cart> cart_list = (ArrayList<Cart>) request.getSession().getAttribute("cart-list");
                 if (cart_list != null) {
                     for (Cart c : cart_list) {
@@ -32,8 +37,6 @@ public class RemoveFromCartServlet extends HttpServlet {
                     }
                     response.sendRedirect("cart.jsp");
                 }
-            } else {
-                response.sendRedirect("cart.jsp");
             }
         }
     }

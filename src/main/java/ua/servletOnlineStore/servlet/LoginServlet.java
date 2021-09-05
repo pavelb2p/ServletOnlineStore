@@ -15,10 +15,12 @@ import java.io.PrintWriter;
 import java.sql.SQLException;
 import java.util.Objects;
 
+/**
+ * Checks if the login and password are correct when entering
+ */
 @WebServlet("/user-login")
 public class LoginServlet extends HttpServlet {
     private static final long serialVersionUID = 1L;
-
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
         response.sendRedirect("login.jsp");
@@ -43,11 +45,7 @@ public class LoginServlet extends HttpServlet {
             } catch (ClassNotFoundException | SQLException e) {
                 e.printStackTrace();
             }
-
             out.print(email + "and " + password);
-
         }
-
-
     }
 }

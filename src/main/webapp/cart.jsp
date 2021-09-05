@@ -50,8 +50,8 @@
         }
         cartProduct = productDao.getCartProducts(cart_list);
         double total = productDao.getTotalCartPrice(cart_list);
-        request.setAttribute("cart_list", cart_list);
-        request.setAttribute("total", total);
+      request.setAttribute("cart_list", cart_list);
+      request.setAttribute("total", total);
     }
 %>
 <html>
